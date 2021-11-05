@@ -1,0 +1,17 @@
+version: '2.2'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      DB_CONNECTION: 'mongodb://db:27017/nest'
+    depends_on:
+      - db
+    ports:
+      - '3000:3000'
+
+  db:
+    image: mongo
+    ports:
+      - '27017:27017'
