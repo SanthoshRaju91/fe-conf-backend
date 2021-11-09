@@ -8,6 +8,7 @@ type Pagination = {
   page: number;
   limit: number;
   count: number;
+  pages: number;
 };
 
 @Injectable()
@@ -33,10 +34,14 @@ export class QueriesService {
     }
 
     const queries = await query;
+
+    const pages = Math.ceil(count / limit);
+
     const metadata: Pagination = {
       count,
       page,
       limit,
+      pages,
     };
     return { queries, metadata };
   }
